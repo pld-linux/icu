@@ -9,6 +9,8 @@ Group:		Libraries
 Source0:	icu-3.0.tgz
 # Source0-md5:	f66c1e6f4622a2d880a5f056d86b5a38
 URL:		http://oss.software.ibm.com/icu/
+BuildRequires:	autoconf
+BuildRequires:	gcc-c++
 Requires:	libicu = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
