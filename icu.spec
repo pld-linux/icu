@@ -98,16 +98,17 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_sbindir}/*
 %dir %{_datadir}/%{name}
+%dir %{_datadir}/%{name}/%{version}
 %{_datadir}/%{name}/%{version}/mkinstalldirs
 %{_mandir}/man1/*
 %{_mandir}/man8/*
 
-
 %files -n libicu
+%defattr(644,root,root,755)
 %{_libdir}/*
 
-
 %files -n libicu-devel
+%defattr(644,root,root,755)
 %dir %{_includedir}/unicode
 %dir %{_includedir}/layout
 %{_includedir}/unicode/*.h
