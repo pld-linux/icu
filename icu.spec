@@ -2,7 +2,7 @@ Summary:	International Components for Unicode
 Summary(pl):	Miêdzynarodowe komponenty dla unikodu
 Name:		icu
 Version:	3.0
-Release:	0.1
+Release:	1
 License:	X License
 Group:		Libraries
 #Source0:	ftp://www-126.ibm.com/pub/%{name}/%{version}/%{name}-%{version}.tgz
@@ -70,34 +70,13 @@ ICU jest grup± bibliotek C i C++, które dostarczaj± kompletn± i pe³n±
 obs³ugê Unikodu i lokalizacji. Ten pakiet zawiera pliki
 programistyczne ICU.
 
-%package locales
-Summary:	Locale data for ICU
-Summary(pl):	Pliki lokalizacyjne dla ICU
-Group:		Libraries
-Requires:	libicu = %{version}-%{release}
-
-%description locales
-The locale data are used by ICU to provide localization (l10n),
-internationalization (i18n) and timezone support to ICU applications.
-This package also contains break data for various languages, and
-transliteration data.
-
-%description locales -l pl
-Dane lokalizacji s± u¿ywane przez ICU do zapewnienia lokalizacji
-(l10n), internacjonalizacji (i18n) i obs³ugi stref czasowych dla
-aplikacji ICU. Ten pakiet zawiera tak¿e dane dotycz±ce ³amania tekstu
-dla ró¿nych jêzyków oraz dane dla transliteracji.
-
 %prep
 %setup -q -n %{name}
 
 %build
 cd source
-echo 'CPPFLAGS += -DICU_DATA_DIR=\"%{_datadir}/%{name}/%{version}\"' >> icudefs.mk
 %configure2_13 \
-    --disable-tests \
-    --disable-samples \
-    --with-data-packaging=files
+    --disable-samples
 
 %{__make}
 
@@ -118,17 +97,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_sbindir}/*
 %dir %{_datadir}/%{name}
 %{_datadir}/%{name}/%{version}/mkinstalldirs
-%{_datadir}/%{name}/%{version}/icudt30l/*.cnv
-%{_datadir}/%{name}/%{version}/icudt30l/*.icu
-%{_datadir}/%{name}/%{version}/icudt30l/*.spp
 %{_mandir}/man1/*
 %{_mandir}/man8/*
-
-
-%files locales
-%{_datadir}/%{name}/%{version}/icudt30l/*.brk
-%{_datadir}/%{name}/%{version}/icudt30l/*.res
-%{_datadir}/%{name}/%{version}/icudt30l/coll/*.res
 
 
 %files -n libicu
