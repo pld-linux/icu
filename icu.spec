@@ -89,15 +89,22 @@ aplikacji ICU. Ten pakiet zawiera tak¿e dane dotycz±ce ³amania tekstu
 dla ró¿nych jêzyków oraz dane dla transliteracji.
 
 %prep
-%setup -q -n %{name}-%{version}.orig -a 1
+%setup -q -n %{name}
 
 %build
-%configure
+cd source
+echo 'CPPFLAGS += -DICU_DATA_DIR=\"%{_datadir}/%{name}/%{version}\"' >> icudefs.mk
+%configure2_13 \
+    --disable-tests \
+    --disable-samples \
+    --with-data-packaging=files
+
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
+cd source
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
@@ -106,11 +113,32 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS CREDITS ChangeLog NEWS README THANKS TODO
+%doc license.html readme.html
 %attr(755,root,root) %{_bindir}/*
-%{_datadir}/%{name}
+%attr(755,root,root) %{_sbindir}/*
+%dir %{_datadir}/%{name}
+%{_datadir}/%{name}/%{version}/mkinstalldirs
+%{_datadir}/%{name}/%{version}/icudt30l/*.cnv
+%{_datadir}/%{name}/%{version}/icudt30l/*.icu
+%{_datadir}/%{name}/%{version}/icudt30l/*.spp
+%{_mandir}/man1/*
+%{_mandir}/man8/*
 
-%files subpackage
-%defattr(644,root,root,755)
-%doc extras/*.gz
-%{_datadir}/%{name}-ext
+
+%files locales
+%{_datadir}/%{name}/%{version}/icudt30l/*.brk
+%{_datadir}/%{name}/%{version}/icudt30l/*.res
+%{_datadir}/%{name}/%{version}/icudt30l/coll/*.res
+
+
+%files -n libicu
+%{_libdir}/*
+
+
+%files -n libicu-devel
+%dir %{_includedir}/unicode
+%dir %{_includedir}/layout
+%{_includedir}/unicode/*.h
+%{_includedir}/layout/*.h
+%{_libdir}/%{name}/%{version}/Makefile.inc
+%{_datadir}/%{name}/%{version}/config
