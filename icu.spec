@@ -6,9 +6,8 @@ Release:	0.1
 License:	X License
 Group:		Libraries
 Source0:	ftp://www-126.ibm.com/pub/%{name}/%{version}/%{name}-%{version}.tgz
-# Source0-md5:	
+# Source0-md5:
 URL:		http://oss.software.ibm.com/icu/
-Provides:	icu
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
