@@ -9,8 +9,8 @@ Group:		Libraries
 Source0:	icu-3.0.tgz
 # Source0-md5:	f66c1e6f4622a2d880a5f056d86b5a38
 URL:		http://oss.software.ibm.com/icu/
-BuildRequires:	autoconf
-BuildRequires:	gcc-c++
+BuildRequires:	automake
+BuildRequires:	libstdc++-devel
 Requires:	libicu = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -77,20 +77,23 @@ programistyczne ICU.
 
 %build
 cd source
+cp -f /usr/share/automake/config.* .
 %configure2_13 \
-    --disable-samples
+	--disable-samples
 
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-cd source
-%{__make} install \
+%{__make} -C source install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%post	-n libicu -p /sbin/ldconfig
+%postun	-n libicu -p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
@@ -105,13 +108,18 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n libicu
 %defattr(644,root,root,755)
-%{_libdir}/*
+%attr(755,root,root) %{_libdir}/lib*.so.*.*
+%dir %{_libdir}/icu
+%dir %{_libdir}/icu/current
+%dir %{_libdir}/icu/%{version}
 
 %files -n libicu-devel
 %defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/lib*.so
 %dir %{_includedir}/unicode
 %dir %{_includedir}/layout
 %{_includedir}/unicode/*.h
 %{_includedir}/layout/*.h
+%{_libdir}/%{name}/Makefile.inc
 %{_libdir}/%{name}/%{version}/Makefile.inc
 %{_datadir}/%{name}/%{version}/config
