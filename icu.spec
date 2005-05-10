@@ -2,7 +2,7 @@ Summary:	International Components for Unicode
 Summary(pl):	Miêdzynarodowe komponenty dla unikodu
 Name:		icu
 Version:	3.2
-Release:	1
+Release:	2
 License:	X License
 Group:		Libraries
 Source0:	ftp://www-126.ibm.com/pub/icu/%{version}/%{name}-%{version}.tgz
