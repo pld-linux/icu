@@ -102,8 +102,6 @@ rm -rf $RPM_BUILD_ROOT
 %doc license.html readme.html
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_sbindir}/*
-%dir %{_datadir}/%{name}
-%dir %{_datadir}/%{name}/%{version}
 %{_datadir}/%{name}/%{version}/mkinstalldirs
 %{_mandir}/man1/*
 %{_mandir}/man8/*
@@ -114,6 +112,8 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/icu
 %dir %{_libdir}/icu/current
 %dir %{_libdir}/icu/%{version}
+%dir %{_datadir}/%{name}
+%dir %{_datadir}/%{name}/%{version}
 
 %files -n libicu-devel
 %defattr(644,root,root,755)
