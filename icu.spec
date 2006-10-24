@@ -1,12 +1,12 @@
 Summary:	International Components for Unicode
 Summary(pl):	Miêdzynarodowe komponenty dla unikodu
 Name:		icu
-Version:	3.2
-Release:	2
+Version:	3.4.1
+Release:	1
 License:	X License
 Group:		Libraries
-Source0:	ftp://www-126.ibm.com/pub/icu/%{version}/%{name}-%{version}.tgz
-# Source0-md5:	55a85d2365338ece483d275119fd990c
+Source0:	ftp://ftp.software.ibm.com/software/globalization/icu/%{version}/%{name}-%{version}.tgz
+# Source0-md5:	2a16f58bcb26e5010c946dca9ec08d5f
 URL:		http://oss.software.ibm.com/icu/
 BuildRequires:	automake
 BuildRequires:	libstdc++-devel
