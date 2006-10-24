@@ -78,6 +78,7 @@ programistyczne ICU.
 cd source
 cp -f /usr/share/automake/config.* .
 %configure2_13 \
+	--sbindir=%{_bindir} \
 	--disable-samples
 
 %{__make}
@@ -101,7 +102,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc license.html readme.html
 %attr(755,root,root) %{_bindir}/*
-%attr(755,root,root) %{_sbindir}/*
+%exclude %{_bindir}/icu-config
 %{_datadir}/%{name}/%{version}/mkinstalldirs
 %{_mandir}/man1/*
 %{_mandir}/man8/*
@@ -125,3 +126,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/%{name}/Makefile.inc
 %{_libdir}/%{name}/%{version}/Makefile.inc
 %{_datadir}/%{name}/%{version}/config
+%attr(755,root,root) %{_bindir}/icu-config
