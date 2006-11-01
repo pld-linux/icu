@@ -1,0 +1,2 @@
+- BuildRequires:  autoconf
+- BuildRequires:  gcc-c++
