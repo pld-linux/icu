@@ -7,7 +7,7 @@ License:	X License
 Group:		Libraries
 Source0:	ftp://ftp.software.ibm.com/software/globalization/icu/%{version}/%{name}-%{version}.tgz
 # Source0-md5:	2a16f58bcb26e5010c946dca9ec08d5f
-URL:		http://oss.software.ibm.com/icu/
+URL:		http://www.ibm.com/software/globalization/icu/
 BuildRequires:	automake
 BuildRequires:	libstdc++-devel
 Requires:	libicu = %{version}-%{release}
@@ -34,8 +34,8 @@ katalogów komunikatów i zasobów, formatowanie komunikatów,
 normalizacjê, formatowanie liczb i walut, obs³ugê stref czasowych,
 transliteracjê, ³amanie s³ów, linii i zdañ itp.
 
-Ten pakiet zawiera bazê znaków unikodowych i pochodne w³asno¶ci wraz
-z konwerterami i danymi stref czasowych.
+Ten pakiet zawiera bazê znaków unikodowych i pochodne w³asno¶ci wraz z
+konwerterami i danymi stref czasowych.
 
 %package -n libicu
 Summary:	International Components for Unicode (libraries)
