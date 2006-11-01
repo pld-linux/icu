@@ -92,6 +92,8 @@ rm -rf $RPM_BUILD_ROOT
 # help rpm to generate deps
 chmod +x $RPM_BUILD_ROOT%{_libdir}/lib*.so.*.*
 
+rm -f $RPM_BUILD_ROOT%{_datadir}/icu/%{version}/license.html
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
