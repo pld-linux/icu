@@ -108,6 +108,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/%{name}/%{version}/mkinstalldirs
 %{_mandir}/man1/*
 %{_mandir}/man8/*
+%exclude %{_mandir}/man1/icu-config.1*
 
 %files -n libicu
 %defattr(644,root,root,755)
@@ -120,6 +121,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n libicu-devel
 %defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/icu-config
 %attr(755,root,root) %{_libdir}/lib*.so
 %dir %{_includedir}/unicode
 %dir %{_includedir}/layout
@@ -128,4 +130,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/%{name}/Makefile.inc
 %{_libdir}/%{name}/%{version}/Makefile.inc
 %{_datadir}/%{name}/%{version}/config
-%attr(755,root,root) %{_bindir}/icu-config
+%{_mandir}/man1/icu-config.1*
