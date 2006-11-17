@@ -105,7 +105,6 @@ rm -rf $RPM_BUILD_ROOT
 %doc license.html readme.html
 %attr(755,root,root) %{_bindir}/*
 %exclude %{_bindir}/icu-config
-%{_datadir}/%{name}/%{version}/mkinstalldirs
 %{_mandir}/man1/*
 %{_mandir}/man8/*
 %exclude %{_mandir}/man1/icu-config.1*
@@ -113,11 +112,6 @@ rm -rf $RPM_BUILD_ROOT
 %files -n libicu
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
-%dir %{_libdir}/icu
-%dir %{_libdir}/icu/current
-%dir %{_libdir}/icu/%{version}
-%dir %{_datadir}/%{name}
-%dir %{_datadir}/%{name}/%{version}
 
 %files -n libicu-devel
 %defattr(644,root,root,755)
@@ -127,7 +121,13 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_includedir}/layout
 %{_includedir}/unicode/*.h
 %{_includedir}/layout/*.h
+%dir %{_libdir}/%{name}
 %{_libdir}/%{name}/Makefile.inc
+%dir %{_libdir}/%{name}/current
+%dir %{_libdir}/%{name}/%{version}
 %{_libdir}/%{name}/%{version}/Makefile.inc
+%dir %{_datadir}/%{name}
+%dir %{_datadir}/%{name}/%{version}
 %{_datadir}/%{name}/%{version}/config
+%attr(755,root,root) %{_datadir}/%{name}/%{version}/mkinstalldirs
 %{_mandir}/man1/icu-config.1*
