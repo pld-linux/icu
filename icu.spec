@@ -1,5 +1,5 @@
 Summary:	International Components for Unicode
-Summary(pl):	Miêdzynarodowe komponenty dla unikodu
+Summary(pl.UTF-8):   MiÄ™dzynarodowe komponenty dla unikodu
 Name:		icu
 Version:	3.4.1
 Release:	2
@@ -25,21 +25,21 @@ transliteration, word, line and sentence breaking, etc.
 This package contains the Unicode character database and derived
 properties, along with converters and time zones data.
 
-%description -l pl
-ICU jest grup± bibliotek C i C++, które dostarczaj± kompletn± i pe³n±
-obs³ugê Unikodu i lokalizacji. Biblioteka dostarcza obs³ugê
-kalendarza, konwersje dla wielu zestawów znaków, sortowanie zale¿ne od
-jêzyka, formatowanie daty i czasu, wsparcie dla wielu lokalizacji,
-katalogów komunikatów i zasobów, formatowanie komunikatów,
-normalizacjê, formatowanie liczb i walut, obs³ugê stref czasowych,
-transliteracjê, ³amanie s³ów, linii i zdañ itp.
+%description -l pl.UTF-8
+ICU jest grupÄ… bibliotek C i C++, ktÃ³re dostarczajÄ… kompletnÄ… i peÅ‚nÄ…
+obsÅ‚ugÄ™ Unikodu i lokalizacji. Biblioteka dostarcza obsÅ‚ugÄ™
+kalendarza, konwersje dla wielu zestawÃ³w znakÃ³w, sortowanie zaleÅ¼ne od
+jÄ™zyka, formatowanie daty i czasu, wsparcie dla wielu lokalizacji,
+katalogÃ³w komunikatÃ³w i zasobÃ³w, formatowanie komunikatÃ³w,
+normalizacjÄ™, formatowanie liczb i walut, obsÅ‚ugÄ™ stref czasowych,
+transliteracjÄ™, Å‚amanie sÅ‚Ã³w, linii i zdaÅ„ itp.
 
-Ten pakiet zawiera bazê znaków unikodowych i pochodne w³asno¶ci wraz z
+Ten pakiet zawiera bazÄ™ znakÃ³w unikodowych i pochodne wÅ‚asnoÅ›ci wraz z
 konwerterami i danymi stref czasowych.
 
 %package -n libicu
 Summary:	International Components for Unicode (libraries)
-Summary(pl):	Miêdzynarodowe Komponenty dla Unikodu (biblioteki)
+Summary(pl.UTF-8):   MiÄ™dzynarodowe Komponenty dla Unikodu (biblioteki)
 Group:		Development/Libraries
 Obsoletes:	libicu30
 
@@ -49,15 +49,15 @@ full-featured Unicode support. This package contains the runtime
 libraries for ICU. It does not contain any of the data files needed at
 runtime and present in the `icu' and `icu-locales` packages.
 
-%description -n libicu -l pl
-ICU jest grup± bibliotek C i C++, które dostarczaj± kompletn± i pe³n±
-obs³ugê Unikodu i lokalizacji. Ten pakiet zawiera biblioteki
-uruchomieniowe ICU. Nie zawiera ¿adnych plików z danymi potrzebnymi w
-czasie dzia³ania i obecnymi w pakietach "icu" i "icu-locales".
+%description -n libicu -l pl.UTF-8
+ICU jest grupÄ… bibliotek C i C++, ktÃ³re dostarczajÄ… kompletnÄ… i peÅ‚nÄ…
+obsÅ‚ugÄ™ Unikodu i lokalizacji. Ten pakiet zawiera biblioteki
+uruchomieniowe ICU. Nie zawiera Å¼adnych plikÃ³w z danymi potrzebnymi w
+czasie dziaÅ‚ania i obecnymi w pakietach "icu" i "icu-locales".
 
 %package -n libicu-devel
 Summary:	International Components for Unicode (development files)
-Summary(pl):	Miêdzynarodowe komponenty dla Unikodu (pliki dla programistów)
+Summary(pl.UTF-8):   MiÄ™dzynarodowe komponenty dla Unikodu (pliki dla programistÃ³w)
 Group:		Development/Libraries
 Requires:	libicu = %{version}-%{release}
 
@@ -66,9 +66,9 @@ ICU is a set of C and C++ libraries that provides robust and
 full-featured Unicode support. This package contains the development
 files for ICU.
 
-%description -n libicu-devel -l pl
-ICU jest grup± bibliotek C i C++, które dostarczaj± kompletn± i pe³n±
-obs³ugê Unikodu i lokalizacji. Ten pakiet zawiera pliki
+%description -n libicu-devel -l pl.UTF-8
+ICU jest grupÄ… bibliotek C i C++, ktÃ³re dostarczajÄ… kompletnÄ… i peÅ‚nÄ…
+obsÅ‚ugÄ™ Unikodu i lokalizacji. Ten pakiet zawiera pliki
 programistyczne ICU.
 
 %prep
