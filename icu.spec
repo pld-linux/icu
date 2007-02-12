@@ -2,7 +2,7 @@ Summary:	International Components for Unicode
 Summary(pl.UTF-8):   Międzynarodowe komponenty dla unikodu
 Name:		icu
 Version:	3.4.1
-Release:	2
+Release:	3
 License:	X License
 Group:		Libraries
 Source0:	ftp://ftp.software.ibm.com/software/globalization/icu/%{version}/%{name}-%{version}.tgz
@@ -91,6 +91,9 @@ rm -rf $RPM_BUILD_ROOT
 
 # help rpm to generate deps
 chmod +x $RPM_BUILD_ROOT%{_libdir}/lib*.so.*.*
+
+# rpm is too stupid sometimes and fails on symlinks to symlinked resources
+ln -sf %{version}/Makefile.inc $RPM_BUILD_ROOT%{_libdir}/%{name}/Makefile.inc
 
 rm -f $RPM_BUILD_ROOT%{_datadir}/icu/%{version}/license.html
 
