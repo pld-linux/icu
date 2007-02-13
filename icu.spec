@@ -1,5 +1,5 @@
 Summary:	International Components for Unicode
-Summary(pl.UTF-8):   Międzynarodowe komponenty dla unikodu
+Summary(pl.UTF-8):	Międzynarodowe komponenty dla unikodu
 Name:		icu
 Version:	3.4.1
 Release:	3
@@ -39,7 +39,7 @@ konwerterami i danymi stref czasowych.
 
 %package -n libicu
 Summary:	International Components for Unicode (libraries)
-Summary(pl.UTF-8):   Międzynarodowe Komponenty dla Unikodu (biblioteki)
+Summary(pl.UTF-8):	Międzynarodowe Komponenty dla Unikodu (biblioteki)
 Group:		Development/Libraries
 Obsoletes:	libicu30
 
@@ -57,7 +57,7 @@ czasie działania i obecnymi w pakietach "icu" i "icu-locales".
 
 %package -n libicu-devel
 Summary:	International Components for Unicode (development files)
-Summary(pl.UTF-8):   Międzynarodowe komponenty dla Unikodu (pliki dla programistów)
+Summary(pl.UTF-8):	Międzynarodowe komponenty dla Unikodu (pliki dla programistów)
 Group:		Development/Libraries
 Requires:	libicu = %{version}-%{release}
 
