@@ -1,13 +1,14 @@
 Summary:	International Components for Unicode
 Summary(pl.UTF-8):	Międzynarodowe komponenty dla unikodu
 Name:		icu
-Version:	3.4.1
-Release:	3
+Version:	3.8
+%define	ver	%(echo %{version} | tr . _)
+Release:	1
 License:	X License
 Group:		Libraries
-Source0:	ftp://ftp.software.ibm.com/software/globalization/icu/%{version}/%{name}-%{version}.tgz
-# Source0-md5:	2a16f58bcb26e5010c946dca9ec08d5f
-URL:		http://www.ibm.com/software/globalization/icu/
+Source0:	http://download.icu-project.org/files/icu4c/%{version}/icu4c-%{ver}-src.tgz
+# Source0-md5:	67cc2650fbcae4c8e3ba5ce4dda4b072
+URL:		http://www.icu-project.org/
 BuildRequires:	automake
 BuildRequires:	libstdc++-devel
 Requires:	libicu = %{version}-%{release}
@@ -114,7 +115,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n libicu
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/lib*.so.*.*
+%attr(755,root,root) %{_libdir}/lib*.so.*
 
 %files -n libicu-devel
 %defattr(644,root,root,755)
