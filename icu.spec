@@ -93,6 +93,10 @@ rm -rf $RPM_BUILD_ROOT
 # help rpm to generate deps
 chmod +x $RPM_BUILD_ROOT%{_libdir}/lib*.so.*.*
 
+# rpm is too stupid sometimes and fails on symlinks to symlinked resources
+# (reporting unresolved dependency at install time)
+ln -sf %{version}/Makefile.inc $RPM_BUILD_ROOT%{_libdir}/%{name}/Makefile.inc
+
 rm -f $RPM_BUILD_ROOT%{_datadir}/icu/%{version}/license.html
 
 %clean
