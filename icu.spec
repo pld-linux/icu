@@ -4,7 +4,7 @@ Name:		icu
 Version:	3.8
 %define	ver	%(echo %{version} | tr . _)
 Release:	1
-License:	X License
+License:	MIT-like
 Group:		Libraries
 Source0:	http://download.icu-project.org/files/icu4c/%{version}/icu4c-%{ver}-src.tgz
 # Source0-md5:	67cc2650fbcae4c8e3ba5ce4dda4b072
@@ -78,7 +78,7 @@ programistyczne ICU.
 %build
 cd source
 cp -f /usr/share/automake/config.* .
-%configure2_13 \
+%configure \
 	--sbindir=%{_bindir} \
 	--disable-samples
 
@@ -92,9 +92,6 @@ rm -rf $RPM_BUILD_ROOT
 
 # help rpm to generate deps
 chmod +x $RPM_BUILD_ROOT%{_libdir}/lib*.so.*.*
-
-# rpm is too stupid sometimes and fails on symlinks to symlinked resources
-ln -sf %{version}/Makefile.inc $RPM_BUILD_ROOT%{_libdir}/%{name}/Makefile.inc
 
 rm -f $RPM_BUILD_ROOT%{_datadir}/icu/%{version}/license.html
 
@@ -115,16 +112,15 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n libicu
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/lib*.so.*
+%attr(755,root,root) %{_libdir}/libicu*.so.*.*
+%attr(755,root,root) %ghost %{_libdir}/libicu*.so.38
 
 %files -n libicu-devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/icu-config
-%attr(755,root,root) %{_libdir}/lib*.so
-%dir %{_includedir}/unicode
-%dir %{_includedir}/layout
-%{_includedir}/unicode/*.h
-%{_includedir}/layout/*.h
+%attr(755,root,root) %{_libdir}/libicu*.so
+%{_includedir}/unicode
+%{_includedir}/layout
 %dir %{_libdir}/%{name}
 %{_libdir}/%{name}/Makefile.inc
 %dir %{_libdir}/%{name}/current
