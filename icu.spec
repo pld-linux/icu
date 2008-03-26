@@ -1,13 +1,14 @@
 Summary:	International Components for Unicode
 Summary(pl.UTF-8):	Międzynarodowe komponenty dla unikodu
 Name:		icu
-Version:	3.8
+Version:	3.8.1
 %define	ver	%(echo %{version} | tr . _)
 Release:	1
 License:	MIT-like
 Group:		Libraries
 Source0:	http://download.icu-project.org/files/icu4c/%{version}/icu4c-%{ver}-src.tgz
-# Source0-md5:	67cc2650fbcae4c8e3ba5ce4dda4b072
+# Source0-md5:	a827dbc9d909febd4ec39b90386868ba
+Patch0:		%{name}-regexp.patch
 URL:		http://www.icu-project.org/
 BuildRequires:	automake
 BuildRequires:	libstdc++-devel
@@ -74,6 +75,7 @@ programistyczne ICU.
 
 %prep
 %setup -q -n %{name}
+%patch0 -p0
 
 %build
 cd source
