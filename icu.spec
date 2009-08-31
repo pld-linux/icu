@@ -9,6 +9,7 @@ Group:		Libraries
 Source0:	http://download.icu-project.org/files/icu4c/%{version}/icu4c-%{ver}-src.tgz
 # Source0-md5:	a827dbc9d909febd4ec39b90386868ba
 Patch0:		%{name}-regexp.patch
+Patch1:		%{name}-gcc44.patch
 URL:		http://www.icu-project.org/
 BuildRequires:	automake
 BuildRequires:	libstdc++-devel
@@ -76,6 +77,7 @@ programistyczne ICU.
 %prep
 %setup -q -n %{name}
 %patch0 -p0
+%patch1 -p1
 
 %build
 cd source
