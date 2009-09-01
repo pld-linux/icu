@@ -1,15 +1,13 @@
 Summary:	International Components for Unicode
 Summary(pl.UTF-8):	Międzynarodowe komponenty dla unikodu
 Name:		icu
-Version:	3.8.1
+Version:	4.2.1
 %define	ver	%(echo %{version} | tr . _)
-Release:	1
+Release:	0.1
 License:	MIT-like
 Group:		Libraries
 Source0:	http://download.icu-project.org/files/icu4c/%{version}/icu4c-%{ver}-src.tgz
-# Source0-md5:	a827dbc9d909febd4ec39b90386868ba
-Patch0:		%{name}-regexp.patch
-Patch1:		%{name}-gcc44.patch
+# Source0-md5:	e3738abd0d3ce1870dc1fd1f22bba5b1
 URL:		http://www.icu-project.org/
 BuildRequires:	automake
 BuildRequires:	libstdc++-devel
@@ -76,8 +74,6 @@ programistyczne ICU.
 
 %prep
 %setup -q -n %{name}
-%patch0 -p0
-%patch1 -p1
 
 %build
 cd source
@@ -86,7 +82,7 @@ cp -f /usr/share/automake/config.* .
 	--sbindir=%{_bindir} \
 	--disable-samples
 
-%{__make} -j1
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -121,7 +117,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -n libicu
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libicu*.so.*.*
-%attr(755,root,root) %ghost %{_libdir}/libicu*.so.38
+%attr(755,root,root) %ghost %{_libdir}/libicu*.so.42
 
 %files -n libicu-devel
 %defattr(644,root,root,755)
@@ -130,12 +126,13 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/unicode
 %{_includedir}/layout
 %dir %{_libdir}/%{name}
-%{_libdir}/%{name}/Makefile.inc
+%{_libdir}/%{name}/*.inc
 %dir %{_libdir}/%{name}/current
 %dir %{_libdir}/%{name}/%{version}
-%{_libdir}/%{name}/%{version}/Makefile.inc
+%{_libdir}/%{name}/%{version}/*.inc
 %dir %{_datadir}/%{name}
 %dir %{_datadir}/%{name}/%{version}
 %{_datadir}/%{name}/%{version}/config
+%{_datadir}/%{name}/%{version}/install-sh
 %attr(755,root,root) %{_datadir}/%{name}/%{version}/mkinstalldirs
 %{_mandir}/man1/icu-config.1*
