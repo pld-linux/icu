@@ -86,7 +86,7 @@ cp -f /usr/share/automake/config.* .
 	--sbindir=%{_bindir} \
 	--disable-samples
 
-%{__make}
+%{__make} -j1
 
 %install
 rm -rf $RPM_BUILD_ROOT
