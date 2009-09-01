@@ -133,6 +133,6 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/%{name}
 %dir %{_datadir}/%{name}/%{version}
 %{_datadir}/%{name}/%{version}/config
-%{_datadir}/%{name}/%{version}/install-sh
+%attr(755,root,root) %{_datadir}/%{name}/%{version}/install-sh
 %attr(755,root,root) %{_datadir}/%{name}/%{version}/mkinstalldirs
 %{_mandir}/man1/icu-config.1*
