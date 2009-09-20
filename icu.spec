@@ -1,16 +1,20 @@
+%define		ver	%(echo %{version} | tr . _)
 Summary:	International Components for Unicode
 Summary(pl.UTF-8):	Międzynarodowe komponenty dla unikodu
 Name:		icu
 Version:	4.2.1
-%define	ver	%(echo %{version} | tr . _)
-Release:	0.1
+Release:	1
 License:	MIT-like
 Group:		Libraries
-Source0:	http://download.icu-project.org/files/icu4c/%{version}/icu4c-%{ver}-src.tgz
+Source0:	http://download.icu-project.org/files/icu4c/%{version}/%{name}4c-%{ver}-src.tgz
 # Source0-md5:	e3738abd0d3ce1870dc1fd1f22bba5b1
+Patch0:		pkgconfig.patch
+Source1:	%{name}-config
 URL:		http://www.icu-project.org/
+BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libstdc++-devel
+BuildRequires:	libtool
 Requires:	libicu = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -74,10 +78,11 @@ programistyczne ICU.
 
 %prep
 %setup -q -n %{name}
+%patch0 -p1
 
 %build
 cd source
-cp -f /usr/share/automake/config.* .
+%{__autoconf}
 %configure \
 	--sbindir=%{_bindir} \
 	--disable-samples
@@ -89,6 +94,10 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} -C source install \
 	DESTDIR=$RPM_BUILD_ROOT
+
+install -p %{SOURCE1} $RPM_BUILD_ROOT%{_bindir}/%{name}-config
+sed -i 's/\$(THREADSCXXFLAGS)//' $RPM_BUILD_ROOT%{_libdir}/pkgconfig/icu.pc
+sed -i 's/\$(THREADSCPPFLAGS)/-D_REENTRANT/' $RPM_BUILD_ROOT%{_libdir}/pkgconfig/icu.pc
 
 # help rpm to generate deps
 chmod +x $RPM_BUILD_ROOT%{_libdir}/lib*.so.*.*
@@ -123,6 +132,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/icu-config
 %attr(755,root,root) %{_libdir}/libicu*.so
+%{_pkgconfigdir}/icu.pc
 %{_includedir}/unicode
 %{_includedir}/layout
 %dir %{_libdir}/%{name}
