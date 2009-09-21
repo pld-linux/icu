@@ -3,12 +3,13 @@ Summary:	International Components for Unicode
 Summary(pl.UTF-8):	Międzynarodowe komponenty dla unikodu
 Name:		icu
 Version:	4.2.1
-Release:	1
+Release:	2
 License:	MIT-like
 Group:		Libraries
 Source0:	http://download.icu-project.org/files/icu4c/%{version}/%{name}4c-%{ver}-src.tgz
 # Source0-md5:	e3738abd0d3ce1870dc1fd1f22bba5b1
 Patch0:		pkgconfig.patch
+Patch1:		ac264-hack.patch
 Source1:	%{name}-config
 URL:		http://www.icu-project.org/
 BuildRequires:	autoconf
@@ -79,6 +80,7 @@ programistyczne ICU.
 %prep
 %setup -q -n %{name}
 %patch0 -p1
+%patch1 -p1
 
 %build
 cd source
