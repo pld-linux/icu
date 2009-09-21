@@ -82,6 +82,8 @@ programistyczne ICU.
 
 %build
 cd source
+%{__libtoolize}
+%{__aclocal}
 %{__autoconf}
 %configure \
 	--sbindir=%{_bindir} \
