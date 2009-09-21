@@ -53,13 +53,13 @@ Obsoletes:	libicu30
 ICU is a set of C and C++ libraries that provides robust and
 full-featured Unicode support. This package contains the runtime
 libraries for ICU. It does not contain any of the data files needed at
-runtime and present in the `icu' and `icu-locales` packages.
+runtime and present in the `icu' package.
 
 %description -n libicu -l pl.UTF-8
 ICU jest grupą bibliotek C i C++, które dostarczają kompletną i pełną
 obsługę Unikodu i lokalizacji. Ten pakiet zawiera biblioteki
 uruchomieniowe ICU. Nie zawiera żadnych plików z danymi potrzebnymi w
-czasie działania i obecnymi w pakietach "icu" i "icu-locales".
+czasie działania i obecnymi w pakietach "icu".
 
 %package -n libicu-devel
 Summary:	International Components for Unicode (development files)
