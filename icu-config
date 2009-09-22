@@ -94,6 +94,7 @@ allflags()
     echo "  --unicode-version      Print version of Unicode data used in ICU ($UNICODE_VERSION)"
     echo "  --version              Print ICU version ($VERSION)"
     echo "  --incfile              Print path to Makefile.inc (for -O option of pkgdata)"
+	echo "  --incpkgdatafile       Print path to pkgdata.inc (for -O option of pkgdata)"
 }
 
 ## Print the normal usage message
@@ -312,9 +313,13 @@ do
 	    echo $datadir
 	    ;;
 
-        --incfile)
+	--incfile)
 	    echo $pkglibdir/Makefile.inc
 	    ;;
+
+	--incpkgdatafile)
+		echo $pkglibdir/pkgdata.inc
+		;;
 
 	--icudata)
             pkg-config --variable=ICUDATA_NAME icu
