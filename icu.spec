@@ -3,7 +3,7 @@ Summary:	International Components for Unicode
 Summary(pl.UTF-8):	Międzynarodowe komponenty dla unikodu
 Name:		icu
 Version:	4.2.1
-Release:	2
+Release:	3
 License:	MIT-like
 Group:		Libraries
 Source0:	http://download.icu-project.org/files/icu4c/%{version}/%{name}4c-%{ver}-src.tgz
