@@ -2,12 +2,12 @@
 Summary:	International Components for Unicode
 Summary(pl.UTF-8):	Międzynarodowe komponenty dla unikodu
 Name:		icu
-Version:	4.2.1
-Release:	3
+Version:	4.4.1
+Release:	1
 License:	MIT-like
 Group:		Libraries
 Source0:	http://download.icu-project.org/files/icu4c/%{version}/%{name}4c-%{ver}-src.tgz
-# Source0-md5:	e3738abd0d3ce1870dc1fd1f22bba5b1
+# Source0-md5:	b6bc0a1153540b2088f8b03e0ba625d3
 Patch0:		pkgconfig.patch
 Patch1:		ac264-hack.patch
 Source1:	%{name}-config
@@ -121,16 +121,25 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc license.html readme.html
-%attr(755,root,root) %{_bindir}/*
-%exclude %{_bindir}/icu-config
-%{_mandir}/man1/*
-%{_mandir}/man8/*
-%exclude %{_mandir}/man1/icu-config.1*
+%attr(755,root,root) %{_bindir}/derb
+%attr(755,root,root) %{_bindir}/gen*
+%attr(755,root,root) %{_bindir}/icuinfo
+%attr(755,root,root) %{_bindir}/icupkg
+%attr(755,root,root) %{_bindir}/makeconv
+%attr(755,root,root) %{_bindir}/pkgdata
+%attr(755,root,root) %{_bindir}/uconv
+%{_mandir}/man1/derb.1*
+%{_mandir}/man1/gen*.1*
+%{_mandir}/man1/makeconv.1*
+%{_mandir}/man1/pkgdata.1*
+%{_mandir}/man1/uconv.1*
+%{_mandir}/man8/gen*.8*
+%{_mandir}/man8/icupkg.8*
 
 %files -n libicu
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libicu*.so.*.*
-%attr(755,root,root) %ghost %{_libdir}/libicu*.so.42
+%attr(755,root,root) %ghost %{_libdir}/libicu*.so.44
 
 %files -n libicu-devel
 %defattr(644,root,root,755)
