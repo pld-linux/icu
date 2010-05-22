@@ -46,7 +46,7 @@ konwerterami i danymi stref czasowych.
 %package -n libicu
 Summary:	International Components for Unicode (libraries)
 Summary(pl.UTF-8):	Międzynarodowe Komponenty dla Unikodu (biblioteki)
-Group:		Development/Libraries
+Group:		Libraries
 Obsoletes:	libicu30
 
 %description -n libicu
