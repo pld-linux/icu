@@ -2,15 +2,13 @@
 Summary:	International Components for Unicode
 Summary(pl.UTF-8):	Międzynarodowe komponenty dla unikodu
 Name:		icu
-Version:	4.4.1
-Release:	2
+Version:	4.6.1
+Release:	1
 License:	MIT-like
 Group:		Libraries
 Source0:	http://download.icu-project.org/files/icu4c/%{version}/%{name}4c-%{ver}-src.tgz
-# Source0-md5:	b6bc0a1153540b2088f8b03e0ba625d3
-Patch0:		pkgconfig.patch
-Patch1:		ac264-hack.patch
-Source1:	%{name}-config
+# Source0-md5:	da64675d85f0c2191cef93a8cb5eea88
+Patch0:		ac264-hack.patch
 URL:		http://www.icu-project.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -80,7 +78,6 @@ programistyczne ICU.
 %prep
 %setup -q -n %{name}
 %patch0 -p1
-%patch1 -p1
 
 %build
 cd source
@@ -99,18 +96,23 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} -C source install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install -p %{SOURCE1} $RPM_BUILD_ROOT%{_bindir}/%{name}-config
-sed -i 's/\$(THREADSCXXFLAGS)//' $RPM_BUILD_ROOT%{_libdir}/pkgconfig/icu.pc
-sed -i 's/\$(THREADSCPPFLAGS)/-D_REENTRANT/' $RPM_BUILD_ROOT%{_libdir}/pkgconfig/icu.pc
+for f in icu-i18n icu-io icu-le icu-lx icu-uc ; do
+sed -i \
+	-e 's/\$(THREADSCXXFLAGS)//' \
+	-e 's/\$(THREADSCFLAGS)//' \
+	-e 's/\$(THREADSCPPFLAGS)/-D_REENTRANT/' $RPM_BUILD_ROOT%{_pkgconfigdir}/${f}.pc
+done
 
 # help rpm to generate deps
 chmod +x $RPM_BUILD_ROOT%{_libdir}/lib*.so.*.*
 
 # rpm is too stupid sometimes and fails on symlinks to symlinked resources
 # (reporting unresolved dependency at install time)
-ln -sf %{version}/Makefile.inc $RPM_BUILD_ROOT%{_libdir}/%{name}/Makefile.inc
+for f in Makefile.inc pkgdata.inc ; do
+	ln -sf %{version}/${f} $RPM_BUILD_ROOT%{_libdir}/%{name}/${f}
+done
 
-rm -f $RPM_BUILD_ROOT%{_datadir}/icu/%{version}/license.html
+%{__rm} $RPM_BUILD_ROOT%{_datadir}/icu/%{version}/license.html
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -139,13 +141,17 @@ rm -rf $RPM_BUILD_ROOT
 %files -n libicu
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libicu*.so.*.*
-%attr(755,root,root) %ghost %{_libdir}/libicu*.so.44
+%attr(755,root,root) %ghost %{_libdir}/libicu*.so.46
 
 %files -n libicu-devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/icu-config
 %attr(755,root,root) %{_libdir}/libicu*.so
-%{_pkgconfigdir}/icu.pc
+%{_pkgconfigdir}/icu-i18n.pc
+%{_pkgconfigdir}/icu-io.pc
+%{_pkgconfigdir}/icu-le.pc
+%{_pkgconfigdir}/icu-lx.pc
+%{_pkgconfigdir}/icu-uc.pc
 %{_includedir}/unicode
 %{_includedir}/layout
 %dir %{_libdir}/%{name}
