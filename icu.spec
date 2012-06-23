@@ -2,18 +2,16 @@
 Summary:	International Components for Unicode
 Summary(pl.UTF-8):	Międzynarodowe komponenty dla unikodu
 Name:		icu
-Version:	49.1.1
+Version:	49.1.2
 Release:	1
 License:	MIT-like
 Group:		Libraries
 Source0:	http://download.icu-project.org/files/icu4c/%{version}/%{name}4c-%{ver}-src.tgz
-# Source0-md5:	7c53f83e0327343f4060c0eb83842daf
+# Source0-md5:	bbc609fe5237202d7abf016141012a45
 Patch0:		ac264-hack.patch
 URL:		http://www.icu-project.org/
-BuildRequires:	autoconf
-BuildRequires:	automake
+BuildRequires:	autoconf >= 2.68
 BuildRequires:	libstdc++-devel
-BuildRequires:	libtool
 Requires:	libicu = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -81,8 +79,6 @@ programistyczne ICU.
 
 %build
 cd source
-%{__libtoolize}
-%{__aclocal}
 %{__autoconf}
 %configure \
 	--sbindir=%{_bindir} \
