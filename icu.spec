@@ -86,6 +86,7 @@ cd source
 %{__autoconf}
 %configure \
 	--sbindir=%{_bindir} \
+	--with-data-packaging=library \
 	--disable-samples
 
 %{__make}
