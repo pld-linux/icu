@@ -73,6 +73,22 @@ ICU jest grupą bibliotek C i C++, które dostarczają kompletną i pełną
 obsługę Unikodu i lokalizacji. Ten pakiet zawiera pliki
 programistyczne ICU.
 
+%package -n libicu-static
+Summary:	International Components for Unicode (static libraries)
+Summary(pl.UTF-8):	Międzynarodowe komponenty dla Unikodu (biblioteki statyczne)
+Group:		Development/Libraries
+Requires:	libicu-devel = %{version}-%{release}
+
+%description -n libicu-static
+ICU is a set of C and C++ libraries that provides robust and
+full-featured Unicode support. This package contains the static 
+libraries for ICU.
+
+%description -n libicu-static -l pl.UTF-8
+ICU jest grupą bibliotek C i C++, które dostarczają kompletną i pełną
+obsługę Unikodu i lokalizacji. Ten pakiet zawiera statyczne
+biblioteki programistyczne ICU.
+
 %prep
 %setup -q -n %{name}
 %patch0 -p1
@@ -83,6 +99,7 @@ cd source
 %configure \
 	--sbindir=%{_bindir} \
 	--with-data-packaging=library \
+    --enable-static \
 	--disable-samples
 
 %{__make}
@@ -162,3 +179,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_datadir}/%{name}/%{version}/install-sh
 %attr(755,root,root) %{_datadir}/%{name}/%{version}/mkinstalldirs
 %{_mandir}/man1/icu-config.1*
+
+%files -n libicu-static
+%defattr(644,root,root,755)
+%{_libdir}/libicu*.a
