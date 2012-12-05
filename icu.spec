@@ -1,3 +1,7 @@
+#
+# Conditional build:
+%bcond_without	static_libs	# don't build static libraries
+
 %define		ver	%(echo %{version} | tr . _)
 Summary:	International Components for Unicode
 Summary(pl.UTF-8):	Międzynarodowe komponenty dla unikodu
@@ -99,7 +103,7 @@ cd source
 %configure \
 	--sbindir=%{_bindir} \
 	--with-data-packaging=library \
-    --enable-static \
+	%{?with_static_libs:--enable-static} \
 	--disable-samples
 
 %{__make}
@@ -180,6 +184,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_datadir}/%{name}/%{version}/mkinstalldirs
 %{_mandir}/man1/icu-config.1*
 
+%if %{with static_libs}
 %files -n libicu-static
 %defattr(644,root,root,755)
 %{_libdir}/libicu*.a
+%endif
