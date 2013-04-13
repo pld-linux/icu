@@ -6,12 +6,12 @@
 Summary:	International Components for Unicode
 Summary(pl.UTF-8):	Międzynarodowe komponenty dla unikodu
 Name:		icu
-Version:	50.1.2
+Version:	51.1
 Release:	1
 License:	MIT-like
 Group:		Libraries
 Source0:	http://download.icu-project.org/files/icu4c/%{version}/%{name}4c-%{ver}-src.tgz
-# Source0-md5:	beb98aa972219c9fcd9c8a71314943c9
+# Source0-md5:	6eef33b229d0239d654983028c9c7053
 Patch0:		ac264-hack.patch
 URL:		http://www.icu-project.org/
 BuildRequires:	autoconf >= 2.68
@@ -159,7 +159,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -n libicu
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libicu*.so.*.*
-%attr(755,root,root) %ghost %{_libdir}/libicu*.so.50
+%attr(755,root,root) %ghost %{_libdir}/libicu*.so.51
 
 %files -n libicu-devel
 %defattr(644,root,root,755)
