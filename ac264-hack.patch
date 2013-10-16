@@ -1,5 +1,5 @@
---- icu/source/configure.in~	2009-09-21 21:51:51.000000000 +0300
-+++ icu/source/configure.in	2009-09-21 21:51:55.877963019 +0300
+--- icu/source/configure.ac~	2009-09-21 21:51:51.000000000 +0300
++++ icu/source/configure.ac	2009-09-21 21:51:55.877963019 +0300
 @@ -517,6 +517,11 @@
  
  AC_SUBST(U_HAVE_DIRENT_H)
