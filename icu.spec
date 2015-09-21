@@ -7,7 +7,7 @@ Summary:	International Components for Unicode
 Summary(pl.UTF-8):	Międzynarodowe komponenty dla unikodu
 Name:		icu
 Version:	55.1
-Release:	1
+Release:	2
 License:	MIT-like
 Group:		Libraries
 Source0:	http://download.icu-project.org/files/icu4c/%{version}/%{name}4c-%{ver}-src.tgz
