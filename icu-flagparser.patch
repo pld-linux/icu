@@ -1,0 +1,38 @@
+In case of too small buffer (U_BUFFER_OVERFLOW_ERROR) parseFlagsFile must return
+wanted buffer size (stored in result) instead of -1.
+
+--- icu/source/tools/toolutil/flagparser.c.orig	2015-10-08 05:54:06.000000000 +0200
++++ icu/source/tools/toolutil/flagparser.c	2015-11-15 21:10:17.988942482 +0100
+@@ -30,6 +30,7 @@
+     FileStream *f = T_FileStream_open(fileName, "r");
+     if (f == NULL) {
+         *status = U_FILE_ACCESS_ERROR;
++        result = -1;
+         goto parseFlagsFile_cleanup;
+     }
+     
+@@ -38,6 +39,7 @@
+ 
+     if (buffer == NULL || tmpFlagBuffer == NULL) {
+         *status = U_MEMORY_ALLOCATION_ERROR;
++        result = -1;
+         goto parseFlagsFile_cleanup;
+     }
+ 
+@@ -49,6 +51,7 @@
+             buffer = uprv_malloc(sizeof(char) * currentBufferSize);
+             if (buffer == NULL) {
+                 *status = U_MEMORY_ALLOCATION_ERROR;
++                result = -1;
+                 goto parseFlagsFile_cleanup;
+             }
+         }
+@@ -98,7 +101,7 @@
+     T_FileStream_close(f);
+     
+     if (U_FAILURE(*status)) {
+-        return -1;
++        return result;
+     }
+ 
+     if (U_SUCCESS(*status) && result == 0) {
