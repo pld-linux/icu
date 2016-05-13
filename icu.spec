@@ -6,13 +6,12 @@
 Summary:	International Components for Unicode
 Summary(pl.UTF-8):	Międzynarodowe komponenty dla unikodu
 Name:		icu
-Version:	56.1
-Release:	2
+Version:	57.1
+Release:	1
 License:	MIT-like
 Group:		Libraries
 Source0:	http://download.icu-project.org/files/icu4c/%{version}/%{name}4c-%{ver}-src.tgz
-# Source0-md5:	c4a2d71ff56aec5ebfab2a3f059be99d
-Patch0:		%{name}-flagparser.patch
+# Source0-md5:	976734806026a4ef8bdd17937c8898b9
 URL:		http://www.icu-project.org/
 BuildRequires:	autoconf >= 2.69
 BuildRequires:	libstdc++-devel
@@ -95,7 +94,6 @@ biblioteki programistyczne ICU.
 
 %prep
 %setup -q -n %{name}
-%patch0 -p1
 
 %build
 cd source
@@ -131,7 +129,7 @@ for f in Makefile.inc pkgdata.inc ; do
 	ln -sf %{version}/${f} $RPM_BUILD_ROOT%{_libdir}/%{name}/${f}
 done
 
-%{__rm} $RPM_BUILD_ROOT%{_datadir}/icu/%{version}/license.html
+%{__rm} $RPM_BUILD_ROOT%{_datadir}/icu/%{version}/LICENSE
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -160,7 +158,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -n libicu
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libicu*.so.*.*
-%attr(755,root,root) %ghost %{_libdir}/libicu*.so.56
+%attr(755,root,root) %ghost %{_libdir}/libicu*.so.57
 
 %files -n libicu-devel
 %defattr(644,root,root,755)
