@@ -6,12 +6,12 @@
 Summary:	International Components for Unicode
 Summary(pl.UTF-8):	Międzynarodowe komponenty dla unikodu
 Name:		icu
-Version:	57.1
+Version:	58.2
 Release:	1
 License:	MIT-like
 Group:		Libraries
 Source0:	http://download.icu-project.org/files/icu4c/%{version}/%{name}4c-%{ver}-src.tgz
-# Source0-md5:	976734806026a4ef8bdd17937c8898b9
+# Source0-md5:	fac212b32b7ec7ab007a12dff1f3aea1
 URL:		http://www.icu-project.org/
 BuildRequires:	autoconf >= 2.69
 BuildRequires:	libstdc++-devel
@@ -113,7 +113,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} -C source install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-for f in icu-i18n icu-io icu-le icu-lx icu-uc ; do
+for f in icu-i18n icu-io icu-uc ; do
 sed -i \
 	-e 's/\$(THREADSCXXFLAGS)//' \
 	-e 's/\$(THREADSCFLAGS)//' \
@@ -158,7 +158,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -n libicu
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libicu*.so.*.*
-%attr(755,root,root) %ghost %{_libdir}/libicu*.so.57
+%attr(755,root,root) %ghost %{_libdir}/libicu*.so.58
 
 %files -n libicu-devel
 %defattr(644,root,root,755)
@@ -166,11 +166,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libicu*.so
 %{_pkgconfigdir}/icu-i18n.pc
 %{_pkgconfigdir}/icu-io.pc
-%{_pkgconfigdir}/icu-le.pc
-%{_pkgconfigdir}/icu-lx.pc
 %{_pkgconfigdir}/icu-uc.pc
 %{_includedir}/unicode
-%{_includedir}/layout
 %dir %{_libdir}/%{name}
 %{_libdir}/%{name}/*.inc
 %dir %{_libdir}/%{name}/current
