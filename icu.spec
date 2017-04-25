@@ -7,11 +7,12 @@ Summary:	International Components for Unicode
 Summary(pl.UTF-8):	Międzynarodowe komponenty dla unikodu
 Name:		icu
 Version:	59.1
-Release:	1
+Release:	2
 License:	MIT-like
 Group:		Libraries
 Source0:	http://download.icu-project.org/files/icu4c/%{version}/%{name}4c-%{ver}-src.tgz
 # Source0-md5:	54923fa9fab5b2b83f235fb72523de37
+Patch0:		%{name}-cxx-pre11.patch
 URL:		http://www.icu-project.org/
 BuildRequires:	autoconf >= 2.69
 BuildRequires:	libstdc++-devel
@@ -94,6 +95,7 @@ biblioteki programistyczne ICU.
 
 %prep
 %setup -q -n %{name}
+%patch0 -p1
 
 %build
 cd source
