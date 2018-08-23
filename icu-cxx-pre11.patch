@@ -1,17 +1,7 @@
---- icu/source/common/unicode/umachine.h.orig	2017-03-16 20:01:12.000000000 +0100
-+++ icu/source/common/unicode/umachine.h	2017-04-24 21:51:37.750924621 +0200
-@@ -295,7 +295,7 @@
-  * If 1, then char16_t is a typedef and not a real type (yet)
-  * @internal
-  */
--#if (U_PLATFORM == U_PF_AIX) && defined(__cplusplus) &&(U_CPLUSPLUS_VERSION < 11)
-+#if ((U_PLATFORM == U_PF_AIX) || defined(__GNUC__)) && defined(__cplusplus) && (U_CPLUSPLUS_VERSION < 11)
- // for AIX, uchar.h needs to be included
- # include <uchar.h>
- # define U_CHAR16_IS_TYPEDEF 1
---- icu/source/common/unicode/char16ptr.h.orig	2017-03-29 06:44:37.000000000 +0200
-+++ icu/source/common/unicode/char16ptr.h	2017-04-25 17:32:39.386782173 +0200
-@@ -61,12 +61,14 @@
+diff -ruNp icu.orig/source/common/unicode/char16ptr.h icu/source/common/unicode/char16ptr.h
+--- icu.orig/source/common/unicode/char16ptr.h	2018-06-21 11:39:21.000000000 +0200
++++ icu/source/common/unicode/char16ptr.h	2018-08-23 19:27:23.581839560 +0200
+@@ -59,12 +59,14 @@ public:
       */
      inline Char16Ptr(wchar_t *p);
  #endif
@@ -19,34 +9,34 @@
      /**
       * nullptr constructor.
       * @param p nullptr
-      * @draft ICU 59
+      * @stable ICU 59
       */
      inline Char16Ptr(std::nullptr_t p);
 +#endif
      /**
       * Destructor.
-      * @draft ICU 59
-@@ -114,7 +116,9 @@
+      * @stable ICU 59
+@@ -112,7 +114,9 @@ Char16Ptr::Char16Ptr(uint16_t *p) : p_(c
  #if U_SIZEOF_WCHAR_T==2
- Char16Ptr::Char16Ptr(wchar_t *p) : p(cast(p)) {}
+ Char16Ptr::Char16Ptr(wchar_t *p) : p_(cast(p)) {}
  #endif
 +#ifdef U_HAS_NULLPTR_T
- Char16Ptr::Char16Ptr(std::nullptr_t p) : p(p) {}
+ Char16Ptr::Char16Ptr(std::nullptr_t p) : p_(p) {}
 +#endif
  Char16Ptr::~Char16Ptr() {
-     U_ALIASING_BARRIER(p);
+     U_ALIASING_BARRIER(p_);
  }
-@@ -130,7 +134,9 @@
+@@ -128,7 +132,9 @@ Char16Ptr::Char16Ptr(uint16_t *p) { u_.u
  #if U_SIZEOF_WCHAR_T==2
- Char16Ptr::Char16Ptr(wchar_t *p) { u.wp = p; }
+ Char16Ptr::Char16Ptr(wchar_t *p) { u_.wp = p; }
  #endif
 +#ifdef U_HAS_NULLPTR_T
- Char16Ptr::Char16Ptr(std::nullptr_t p) { u.cp = p; }
+ Char16Ptr::Char16Ptr(std::nullptr_t p) { u_.cp = p; }
 +#endif
  Char16Ptr::~Char16Ptr() {}
  
- char16_t *Char16Ptr::get() const { return u.cp; }
-@@ -168,12 +174,14 @@
+ char16_t *Char16Ptr::get() const { return u_.cp; }
+@@ -164,12 +170,14 @@ public:
       */
      inline ConstChar16Ptr(const wchar_t *p);
  #endif
@@ -54,36 +44,37 @@
      /**
       * nullptr constructor.
       * @param p nullptr
-      * @draft ICU 59
+      * @stable ICU 59
       */
      inline ConstChar16Ptr(const std::nullptr_t p);
 +#endif
  
      /**
       * Destructor.
-@@ -222,7 +230,9 @@
+@@ -218,7 +226,9 @@ ConstChar16Ptr::ConstChar16Ptr(const uin
  #if U_SIZEOF_WCHAR_T==2
- ConstChar16Ptr::ConstChar16Ptr(const wchar_t *p) : p(cast(p)) {}
+ ConstChar16Ptr::ConstChar16Ptr(const wchar_t *p) : p_(cast(p)) {}
  #endif
 +#ifdef U_HAS_NULLPTR_T
- ConstChar16Ptr::ConstChar16Ptr(const std::nullptr_t p) : p(p) {}
+ ConstChar16Ptr::ConstChar16Ptr(const std::nullptr_t p) : p_(p) {}
 +#endif
  ConstChar16Ptr::~ConstChar16Ptr() {
-     U_ALIASING_BARRIER(p);
+     U_ALIASING_BARRIER(p_);
  }
-@@ -238,7 +248,9 @@
+@@ -234,7 +244,9 @@ ConstChar16Ptr::ConstChar16Ptr(const uin
  #if U_SIZEOF_WCHAR_T==2
- ConstChar16Ptr::ConstChar16Ptr(const wchar_t *p) { u.wp = p; }
+ ConstChar16Ptr::ConstChar16Ptr(const wchar_t *p) { u_.wp = p; }
  #endif
 +#ifdef U_HASH_NULLPTR_T
- ConstChar16Ptr::ConstChar16Ptr(const std::nullptr_t p) { u.cp = p; }
+ ConstChar16Ptr::ConstChar16Ptr(const std::nullptr_t p) { u_.cp = p; }
 +#endif
  ConstChar16Ptr::~ConstChar16Ptr() {}
  
- const char16_t *ConstChar16Ptr::get() const { return u.cp; }
---- icu/source/common/unicode/platform.h.orig	2017-03-22 20:06:26.000000000 +0100
-+++ icu/source/common/unicode/platform.h	2017-04-25 17:30:01.483450642 +0200
-@@ -503,6 +503,10 @@
+ const char16_t *ConstChar16Ptr::get() const { return u_.cp; }
+diff -ruNp icu.orig/source/common/unicode/platform.h icu/source/common/unicode/platform.h
+--- icu.orig/source/common/unicode/platform.h	2018-06-21 11:39:21.000000000 +0200
++++ icu/source/common/unicode/platform.h	2018-08-23 19:28:11.562612934 +0200
+@@ -482,6 +482,10 @@
  namespace std {
    typedef decltype(nullptr) nullptr_t;
  };
@@ -94,57 +85,70 @@
  #endif
  
  /**
---- icu/source/common/unicode/unistr.h.orig	2017-03-29 06:44:37.000000000 +0200
-+++ icu/source/common/unicode/unistr.h	2017-04-25 17:33:43.030114781 +0200
-@@ -3049,6 +3049,7 @@
-    * Do not use #ifndef U_HIDE_DRAFT_API for the following constructor,
-    * it should always be available regardless of U_HIDE_DRAFT_API status
-    */
+diff -ruNp icu.orig/source/common/unicode/umachine.h icu/source/common/unicode/umachine.h
+--- icu.orig/source/common/unicode/umachine.h	2018-06-21 11:39:21.000000000 +0200
++++ icu/source/common/unicode/umachine.h	2018-08-23 19:24:06.688770067 +0200
+@@ -295,7 +295,7 @@ typedef int8_t UBool;
+  * If 1, then char16_t is a typedef and not a real type (yet)
+  * @internal
+  */
+-#if (U_PLATFORM == U_PF_AIX) && defined(__cplusplus) &&(U_CPLUSPLUS_VERSION < 11)
++#if ((U_PLATFORM == U_PF_AIX) || defined(__GNUC__)) && defined(__cplusplus) && (U_CPLUSPLUS_VERSION < 11)
+ // for AIX, uchar.h needs to be included
+ # include <uchar.h>
+ # define U_CHAR16_IS_TYPEDEF 1
+diff -ruNp icu.orig/source/common/unicode/unistr.h icu/source/common/unicode/unistr.h
+--- icu.orig/source/common/unicode/unistr.h	2018-06-21 11:39:21.000000000 +0200
++++ icu/source/common/unicode/unistr.h	2018-08-23 19:31:55.790554495 +0200
+@@ -3026,6 +3026,7 @@ public:
+       UnicodeString(ConstChar16Ptr(text)) {}
+ #endif
+ 
 +#ifdef U_HAS_NULLPTR_T
    /**
     * nullptr_t constructor.
     * Effectively the same as the default constructor, makes an empty string object.
-@@ -3060,6 +3061,7 @@
-    * @draft ICU 59
+@@ -3037,6 +3038,7 @@ public:
+    * @stable ICU 59
     */
    UNISTR_FROM_STRING_EXPLICIT inline UnicodeString(const std::nullptr_t text);
 +#endif
  
    /**
     * char16_t* constructor.
-@@ -3108,6 +3110,7 @@
-    * Do not use #ifndef U_HIDE_DRAFT_API for the following constructor,
-    * it should always be available regardless of U_HIDE_DRAFT_API status
-    */
+@@ -3073,6 +3075,7 @@ public:
+       UnicodeString(ConstChar16Ptr(text), length) {}
+ #endif
+ 
 +#ifdef U_HAS_NULLPTR_T
    /**
     * nullptr_t constructor.
     * Effectively the same as the default constructor, makes an empty string object.
-@@ -3116,6 +3119,7 @@
-    * @draft ICU 59
+@@ -3081,6 +3084,7 @@ public:
+    * @stable ICU 59
     */
    inline UnicodeString(const std::nullptr_t text, int32_t length);
 +#endif
  
    /**
     * Readonly-aliasing char16_t* constructor.
-@@ -3202,6 +3206,7 @@
-    * Do not use #ifndef U_HIDE_DRAFT_API for the following constructor,
-    * it should always be available regardless of U_HIDE_DRAFT_API status
-    */
+@@ -3155,6 +3159,7 @@ public:
+       UnicodeString(Char16Ptr(buffer), buffLength, buffCapacity) {}
+ #endif
+ 
 +#ifdef U_HAS_NULLPTR_T
    /**
     * Writable-aliasing nullptr_t constructor.
     * Effectively the same as the default constructor, makes an empty string object.
-@@ -3211,6 +3216,7 @@
-    * @draft ICU 59
+@@ -3164,6 +3169,7 @@ public:
+    * @stable ICU 59
     */
    inline UnicodeString(std::nullptr_t buffer, int32_t buffLength, int32_t buffCapacity);
 +#endif
  
  #if U_CHARSET_IS_UTF8 || !UCONFIG_NO_CONVERSION
  
-@@ -3924,6 +3930,7 @@
+@@ -3875,6 +3881,7 @@ UnicodeString::UnicodeString() {
    fUnion.fStackFields.fLengthAndFlags=kShortString;
  }
  
@@ -152,7 +156,7 @@
  inline UnicodeString::UnicodeString(const std::nullptr_t /*text*/) {
    fUnion.fStackFields.fLengthAndFlags=kShortString;
  }
-@@ -3935,6 +3942,7 @@
+@@ -3886,6 +3893,7 @@ inline UnicodeString::UnicodeString(cons
  inline UnicodeString::UnicodeString(std::nullptr_t /*buffer*/, int32_t /*buffLength*/, int32_t /*buffCapacity*/) {
    fUnion.fStackFields.fLengthAndFlags=kShortString;
  }
@@ -160,7 +164,7 @@
  
  //========================================
  // Read-only implementation methods
-@@ -3985,7 +3993,11 @@
+@@ -3936,7 +3944,11 @@ UnicodeString::isBufferWritable() const
  inline const char16_t *
  UnicodeString::getBuffer() const {
    if(fUnion.fFields.fLengthAndFlags&(kIsBogus|kOpenGetBuffer)) {
