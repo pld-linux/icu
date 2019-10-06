@@ -127,7 +127,7 @@ diff -ruNp icu.orig/source/common/unicode/unistr.h icu/source/common/unicode/uni
 @@ -3081,6 +3084,7 @@ public:
     * @stable ICU 59
     */
-   inline UnicodeString(const std::nullptr_t text, int32_t length);
+   inline UnicodeString(const std::nullptr_t text, int32_t textLength);
 +#endif
  
    /**
