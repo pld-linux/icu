@@ -7,12 +7,12 @@
 Summary:	International Components for Unicode
 Summary(pl.UTF-8):	Międzynarodowe komponenty dla unikodu
 Name:		icu
-Version:	65.1
+Version:	67.1
 Release:	1
 License:	MIT-like
 Group:		Libraries
-Source0:	https://github.com/unicode-org/icu/releases/download/release-65-1/icu4c-%{ver}-src.tgz
-# Source0-md5:	d1ff436e26cabcb28e6cb383d32d1339
+Source0:	https://github.com/unicode-org/icu/releases/download/release-67-1/icu4c-%{ver}-src.tgz
+# Source0-md5:	c4d62b497cbd89ab2a9ca6b543e57b30
 Patch0:		%{name}-cxx-pre11.patch
 URL:		http://www.icu-project.org/
 BuildRequires:	autoconf >= 2.69
