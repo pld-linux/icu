@@ -14,6 +14,7 @@ Group:		Libraries
 Source0:	https://github.com/unicode-org/icu/releases/download/release-67-1/icu4c-%{ver}-src.tgz
 # Source0-md5:	c4d62b497cbd89ab2a9ca6b543e57b30
 Patch0:		%{name}-cxx-pre11.patch
+Patch1:		icudata-stdlibs.patch
 URL:		http://www.icu-project.org/
 BuildRequires:	autoconf >= 2.69
 BuildRequires:	libstdc++-devel
@@ -97,6 +98,7 @@ biblioteki programistyczne ICU.
 %prep
 %setup -q -n %{name}
 %patch0 -p1
+%patch1 -p1
 
 %build
 cd source
