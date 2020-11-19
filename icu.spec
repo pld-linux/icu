@@ -176,7 +176,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/unicode
 %dir %{_libdir}/%{name}
 %{_libdir}/%{name}/*.inc
-%dir %{_libdir}/%{name}/current
+%{_libdir}/%{name}/current
 %dir %{_libdir}/%{name}/%{version}
 %{_libdir}/%{name}/%{version}/*.inc
 %dir %{_datadir}/%{name}
