@@ -117,7 +117,7 @@ diff -ruNp icu.orig/source/common/unicode/unistr.h icu/source/common/unicode/uni
    /**
     * char16_t* constructor.
 @@ -3073,6 +3075,7 @@ public:
-       UnicodeString(ConstChar16Ptr(text), length) {}
+       UnicodeString(ConstChar16Ptr(text), textLength) {}
  #endif
  
 +#ifdef U_HAS_NULLPTR_T
