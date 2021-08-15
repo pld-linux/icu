@@ -15,7 +15,7 @@ Source0:	https://github.com/unicode-org/icu/releases/download/release-69-1/icu4c
 # Source0-md5:	9403db682507369d0f60a25ea67014c4
 Patch0:		%{name}-cxx-pre11.patch
 Patch1:		icudata-stdlibs.patch
-URL:		http://www.icu-project.org/
+URL:		http://site.icu-project.org/
 BuildRequires:	autoconf >= 2.69
 BuildRequires:	libstdc++-devel
 Requires:	libicu = %{version}-%{release}
