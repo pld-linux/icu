@@ -1,12 +1,12 @@
 #
 # Conditional build:
-%bcond_without	static_libs	# don't build static libraries
+%bcond_with	static_libs	# don't build static libraries
 
 %define		ver	%(echo %{version} | tr . _)
 %define		basever	%(echo %{version} | cut -d. -f1)
 Summary:	International Components for Unicode
 Summary(pl.UTF-8):	Międzynarodowe komponenty dla unikodu
-Name:		icu
+Name:		icu67
 Version:	67.1
 Release:	1
 License:	MIT-like
@@ -18,7 +18,7 @@ Patch1:		icudata-stdlibs.patch
 URL:		http://www.icu-project.org/
 BuildRequires:	autoconf >= 2.69
 BuildRequires:	libstdc++-devel
-Requires:	libicu = %{version}-%{release}
+Requires:	libicu67 = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -45,52 +45,52 @@ transliterację, łamanie słów, linii i zdań itp.
 Ten pakiet zawiera bazę znaków unikodowych i pochodne własności wraz z
 konwerterami i danymi stref czasowych.
 
-%package -n libicu
+%package -n libicu67
 Summary:	International Components for Unicode (libraries)
 Summary(pl.UTF-8):	Międzynarodowe Komponenty dla Unikodu (biblioteki)
 Group:		Libraries
 Obsoletes:	libicu30
 
-%description -n libicu
+%description -n libicu67
 ICU is a set of C and C++ libraries that provides robust and
 full-featured Unicode support. This package contains the runtime
 libraries for ICU. It does not contain any of the data files needed at
 runtime and present in the `icu' package.
 
-%description -n libicu -l pl.UTF-8
+%description -n libicu67 -l pl.UTF-8
 ICU jest grupą bibliotek C i C++, które dostarczają kompletną i pełną
 obsługę Unikodu i lokalizacji. Ten pakiet zawiera biblioteki
 uruchomieniowe ICU. Nie zawiera żadnych plików z danymi potrzebnymi w
 czasie działania i obecnymi w pakietach "icu".
 
-%package -n libicu-devel
+%package -n libicu67-devel
 Summary:	International Components for Unicode (development files)
 Summary(pl.UTF-8):	Międzynarodowe komponenty dla Unikodu (pliki dla programistów)
 Group:		Development/Libraries
-Requires:	libicu = %{version}-%{release}
+Requires:	libicu67 = %{version}-%{release}
 
-%description -n libicu-devel
+%description -n libicu67-devel
 ICU is a set of C and C++ libraries that provides robust and
 full-featured Unicode support. This package contains the development
 files for ICU.
 
-%description -n libicu-devel -l pl.UTF-8
+%description -n libicu67-devel -l pl.UTF-8
 ICU jest grupą bibliotek C i C++, które dostarczają kompletną i pełną
 obsługę Unikodu i lokalizacji. Ten pakiet zawiera pliki
 programistyczne ICU.
 
-%package -n libicu-static
+%package -n libicu67-static
 Summary:	International Components for Unicode (static libraries)
 Summary(pl.UTF-8):	Międzynarodowe komponenty dla Unikodu (biblioteki statyczne)
 Group:		Development/Libraries
-Requires:	libicu-devel = %{version}-%{release}
+Requires:	libicu67-devel = %{version}-%{release}
 
-%description -n libicu-static
+%description -n libicu67-static
 ICU is a set of C and C++ libraries that provides robust and
 full-featured Unicode support. This package contains the static 
 libraries for ICU.
 
-%description -n libicu-static -l pl.UTF-8
+%description -n libicu67-static -l pl.UTF-8
 ICU jest grupą bibliotek C i C++, które dostarczają kompletną i pełną
 obsługę Unikodu i lokalizacji. Ten pakiet zawiera statyczne
 biblioteki programistyczne ICU.
@@ -139,8 +139,8 @@ done
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post	-n libicu -p /sbin/ldconfig
-%postun	-n libicu -p /sbin/ldconfig
+%post	-n libicu67 -p /sbin/ldconfig
+%postun	-n libicu67 -p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
@@ -161,12 +161,12 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man8/gen*.8*
 %{_mandir}/man8/icupkg.8*
 
-%files -n libicu
+%files -n libicu67
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libicu*.so.*.*
 %attr(755,root,root) %ghost %{_libdir}/libicu*.so.%{basever}
 
-%files -n libicu-devel
+%files -n libicu67-devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/icu-config
 %attr(755,root,root) %{_libdir}/libicu*.so
@@ -187,7 +187,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/icu-config.1*
 
 %if %{with static_libs}
-%files -n libicu-static
+%files -n libicu67-static
 %defattr(644,root,root,755)
 %{_libdir}/libicu*.a
 %endif
