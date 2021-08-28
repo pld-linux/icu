@@ -1,7 +1,7 @@
-diff -ruNp icu.orig/source/common/unicode/char16ptr.h icu/source/common/unicode/char16ptr.h
---- icu.orig/source/common/unicode/char16ptr.h	2018-06-21 11:39:21.000000000 +0200
-+++ icu/source/common/unicode/char16ptr.h	2018-08-23 19:27:23.581839560 +0200
-@@ -59,12 +59,14 @@ public:
+diff -urNp -x '*.orig' icu.org/source/common/unicode/char16ptr.h icu/source/common/unicode/char16ptr.h
+--- icu.org/source/common/unicode/char16ptr.h	2020-04-22 22:04:20.000000000 +0200
++++ icu/source/common/unicode/char16ptr.h	2021-08-28 18:37:59.680815945 +0200
+@@ -64,12 +64,14 @@ public:
       */
      inline Char16Ptr(wchar_t *p);
  #endif
@@ -16,7 +16,7 @@ diff -ruNp icu.orig/source/common/unicode/char16ptr.h icu/source/common/unicode/
      /**
       * Destructor.
       * @stable ICU 59
-@@ -112,7 +114,9 @@ Char16Ptr::Char16Ptr(uint16_t *p) : p_(c
+@@ -118,7 +120,9 @@ Char16Ptr::Char16Ptr(uint16_t *p) : p_(c
  #if U_SIZEOF_WCHAR_T==2
  Char16Ptr::Char16Ptr(wchar_t *p) : p_(cast(p)) {}
  #endif
@@ -26,7 +26,7 @@ diff -ruNp icu.orig/source/common/unicode/char16ptr.h icu/source/common/unicode/
  Char16Ptr::~Char16Ptr() {
      U_ALIASING_BARRIER(p_);
  }
-@@ -128,7 +132,9 @@ Char16Ptr::Char16Ptr(uint16_t *p) { u_.u
+@@ -134,7 +138,9 @@ Char16Ptr::Char16Ptr(uint16_t *p) { u_.u
  #if U_SIZEOF_WCHAR_T==2
  Char16Ptr::Char16Ptr(wchar_t *p) { u_.wp = p; }
  #endif
@@ -36,7 +36,7 @@ diff -ruNp icu.orig/source/common/unicode/char16ptr.h icu/source/common/unicode/
  Char16Ptr::~Char16Ptr() {}
  
  char16_t *Char16Ptr::get() const { return u_.cp; }
-@@ -164,12 +170,14 @@ public:
+@@ -171,12 +177,14 @@ public:
       */
      inline ConstChar16Ptr(const wchar_t *p);
  #endif
@@ -51,7 +51,7 @@ diff -ruNp icu.orig/source/common/unicode/char16ptr.h icu/source/common/unicode/
  
      /**
       * Destructor.
-@@ -218,7 +226,9 @@ ConstChar16Ptr::ConstChar16Ptr(const uin
+@@ -226,7 +234,9 @@ ConstChar16Ptr::ConstChar16Ptr(const uin
  #if U_SIZEOF_WCHAR_T==2
  ConstChar16Ptr::ConstChar16Ptr(const wchar_t *p) : p_(cast(p)) {}
  #endif
@@ -61,7 +61,7 @@ diff -ruNp icu.orig/source/common/unicode/char16ptr.h icu/source/common/unicode/
  ConstChar16Ptr::~ConstChar16Ptr() {
      U_ALIASING_BARRIER(p_);
  }
-@@ -234,7 +244,9 @@ ConstChar16Ptr::ConstChar16Ptr(const uin
+@@ -242,7 +252,9 @@ ConstChar16Ptr::ConstChar16Ptr(const uin
  #if U_SIZEOF_WCHAR_T==2
  ConstChar16Ptr::ConstChar16Ptr(const wchar_t *p) { u_.wp = p; }
  #endif
@@ -71,10 +71,10 @@ diff -ruNp icu.orig/source/common/unicode/char16ptr.h icu/source/common/unicode/
  ConstChar16Ptr::~ConstChar16Ptr() {}
  
  const char16_t *ConstChar16Ptr::get() const { return u_.cp; }
-diff -ruNp icu.orig/source/common/unicode/platform.h icu/source/common/unicode/platform.h
---- icu.orig/source/common/unicode/platform.h	2018-06-21 11:39:21.000000000 +0200
-+++ icu/source/common/unicode/platform.h	2018-08-23 19:28:11.562612934 +0200
-@@ -482,6 +482,10 @@
+diff -urNp -x '*.orig' icu.org/source/common/unicode/platform.h icu/source/common/unicode/platform.h
+--- icu.org/source/common/unicode/platform.h	2020-04-22 22:04:20.000000000 +0200
++++ icu/source/common/unicode/platform.h	2021-08-28 18:37:59.680815945 +0200
+@@ -514,6 +514,10 @@
  namespace std {
    typedef decltype(nullptr) nullptr_t;
  };
@@ -85,10 +85,10 @@ diff -ruNp icu.orig/source/common/unicode/platform.h icu/source/common/unicode/p
  #endif
  
  /**
-diff -ruNp icu.orig/source/common/unicode/umachine.h icu/source/common/unicode/umachine.h
---- icu.orig/source/common/unicode/umachine.h	2018-06-21 11:39:21.000000000 +0200
-+++ icu/source/common/unicode/umachine.h	2018-08-23 19:24:06.688770067 +0200
-@@ -295,7 +295,7 @@ typedef int8_t UBool;
+diff -urNp -x '*.orig' icu.org/source/common/unicode/umachine.h icu/source/common/unicode/umachine.h
+--- icu.org/source/common/unicode/umachine.h	2020-04-22 22:04:20.000000000 +0200
++++ icu/source/common/unicode/umachine.h	2021-08-28 18:37:59.680815945 +0200
+@@ -320,7 +320,7 @@ typedef int8_t UBool;
   * If 1, then char16_t is a typedef and not a real type (yet)
   * @internal
   */
@@ -97,10 +97,10 @@ diff -ruNp icu.orig/source/common/unicode/umachine.h icu/source/common/unicode/u
  // for AIX, uchar.h needs to be included
  # include <uchar.h>
  # define U_CHAR16_IS_TYPEDEF 1
-diff -ruNp icu.orig/source/common/unicode/unistr.h icu/source/common/unicode/unistr.h
---- icu.orig/source/common/unicode/unistr.h	2018-06-21 11:39:21.000000000 +0200
-+++ icu/source/common/unicode/unistr.h	2018-08-23 19:31:55.790554495 +0200
-@@ -3026,6 +3026,7 @@ public:
+diff -urNp -x '*.orig' icu.org/source/common/unicode/unistr.h icu/source/common/unicode/unistr.h
+--- icu.org/source/common/unicode/unistr.h	2020-04-22 22:04:20.000000000 +0200
++++ icu/source/common/unicode/unistr.h	2021-08-28 18:37:59.684149282 +0200
+@@ -3014,6 +3014,7 @@ public:
        UnicodeString(ConstChar16Ptr(text)) {}
  #endif
  
@@ -108,7 +108,7 @@ diff -ruNp icu.orig/source/common/unicode/unistr.h icu/source/common/unicode/uni
    /**
     * nullptr_t constructor.
     * Effectively the same as the default constructor, makes an empty string object.
-@@ -3037,6 +3038,7 @@ public:
+@@ -3025,6 +3026,7 @@ public:
     * @stable ICU 59
     */
    UNISTR_FROM_STRING_EXPLICIT inline UnicodeString(const std::nullptr_t text);
@@ -116,15 +116,15 @@ diff -ruNp icu.orig/source/common/unicode/unistr.h icu/source/common/unicode/uni
  
    /**
     * char16_t* constructor.
-@@ -3073,6 +3075,7 @@ public:
-       UnicodeString(ConstChar16Ptr(text), length) {}
+@@ -3061,6 +3063,7 @@ public:
+       UnicodeString(ConstChar16Ptr(text), textLength) {}
  #endif
  
 +#ifdef U_HAS_NULLPTR_T
    /**
     * nullptr_t constructor.
     * Effectively the same as the default constructor, makes an empty string object.
-@@ -3081,6 +3084,7 @@ public:
+@@ -3069,6 +3072,7 @@ public:
     * @stable ICU 59
     */
    inline UnicodeString(const std::nullptr_t text, int32_t textLength);
@@ -132,7 +132,7 @@ diff -ruNp icu.orig/source/common/unicode/unistr.h icu/source/common/unicode/uni
  
    /**
     * Readonly-aliasing char16_t* constructor.
-@@ -3155,6 +3159,7 @@ public:
+@@ -3143,6 +3147,7 @@ public:
        UnicodeString(Char16Ptr(buffer), buffLength, buffCapacity) {}
  #endif
  
@@ -140,7 +140,7 @@ diff -ruNp icu.orig/source/common/unicode/unistr.h icu/source/common/unicode/uni
    /**
     * Writable-aliasing nullptr_t constructor.
     * Effectively the same as the default constructor, makes an empty string object.
-@@ -3164,6 +3169,7 @@ public:
+@@ -3152,6 +3157,7 @@ public:
     * @stable ICU 59
     */
    inline UnicodeString(std::nullptr_t buffer, int32_t buffLength, int32_t buffCapacity);
@@ -148,7 +148,7 @@ diff -ruNp icu.orig/source/common/unicode/unistr.h icu/source/common/unicode/uni
  
  #if U_CHARSET_IS_UTF8 || !UCONFIG_NO_CONVERSION
  
-@@ -3875,6 +3881,7 @@ UnicodeString::UnicodeString() {
+@@ -3859,6 +3865,7 @@ UnicodeString::UnicodeString() {
    fUnion.fStackFields.fLengthAndFlags=kShortString;
  }
  
@@ -156,7 +156,7 @@ diff -ruNp icu.orig/source/common/unicode/unistr.h icu/source/common/unicode/uni
  inline UnicodeString::UnicodeString(const std::nullptr_t /*text*/) {
    fUnion.fStackFields.fLengthAndFlags=kShortString;
  }
-@@ -3886,6 +3893,7 @@ inline UnicodeString::UnicodeString(cons
+@@ -3870,6 +3877,7 @@ inline UnicodeString::UnicodeString(cons
  inline UnicodeString::UnicodeString(std::nullptr_t /*buffer*/, int32_t /*buffLength*/, int32_t /*buffCapacity*/) {
    fUnion.fStackFields.fLengthAndFlags=kShortString;
  }
@@ -164,7 +164,7 @@ diff -ruNp icu.orig/source/common/unicode/unistr.h icu/source/common/unicode/uni
  
  //========================================
  // Read-only implementation methods
-@@ -3936,7 +3944,11 @@ UnicodeString::isBufferWritable() const
+@@ -3920,7 +3928,11 @@ UnicodeString::isBufferWritable() const
  inline const char16_t *
  UnicodeString::getBuffer() const {
    if(fUnion.fFields.fLengthAndFlags&(kIsBogus|kOpenGetBuffer)) {
