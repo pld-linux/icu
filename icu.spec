@@ -8,7 +8,7 @@ Summary:	International Components for Unicode
 Summary(pl.UTF-8):	Międzynarodowe komponenty dla unikodu
 Name:		icu67
 Version:	67.1
-Release:	1
+Release:	2
 License:	MIT-like
 Group:		Libraries
 Source0:	https://github.com/unicode-org/icu/releases/download/release-67-1/icu4c-%{ver}-src.tgz
@@ -96,7 +96,7 @@ obsługę Unikodu i lokalizacji. Ten pakiet zawiera statyczne
 biblioteki programistyczne ICU.
 
 %prep
-%setup -q -n %{name}
+%setup -q -n icu
 %patch0 -p1
 %patch1 -p1
 
@@ -131,7 +131,7 @@ chmod +x $RPM_BUILD_ROOT%{_libdir}/lib*.so.*.*
 # rpm is too stupid sometimes and fails on symlinks to symlinked resources
 # (reporting unresolved dependency at install time)
 for f in Makefile.inc pkgdata.inc ; do
-	ln -sf %{version}/${f} $RPM_BUILD_ROOT%{_libdir}/%{name}/${f}
+	ln -sf %{version}/${f} $RPM_BUILD_ROOT%{_libdir}/icu/${f}
 done
 
 %{__rm} $RPM_BUILD_ROOT%{_datadir}/icu/%{version}/LICENSE
@@ -174,16 +174,16 @@ rm -rf $RPM_BUILD_ROOT
 %{_pkgconfigdir}/icu-io.pc
 %{_pkgconfigdir}/icu-uc.pc
 %{_includedir}/unicode
-%dir %{_libdir}/%{name}
-%{_libdir}/%{name}/*.inc
-%{_libdir}/%{name}/current
-%dir %{_libdir}/%{name}/%{version}
-%{_libdir}/%{name}/%{version}/*.inc
-%dir %{_datadir}/%{name}
-%dir %{_datadir}/%{name}/%{version}
-%{_datadir}/%{name}/%{version}/config
-%attr(755,root,root) %{_datadir}/%{name}/%{version}/install-sh
-%attr(755,root,root) %{_datadir}/%{name}/%{version}/mkinstalldirs
+%dir %{_libdir}/icu
+%{_libdir}/icu/*.inc
+%{_libdir}/icu/current
+%dir %{_libdir}/icu/%{version}
+%{_libdir}/icu/%{version}/*.inc
+%dir %{_datadir}/icu
+%dir %{_datadir}/icu/%{version}
+%{_datadir}/icu/%{version}/config
+%attr(755,root,root) %{_datadir}/icu/%{version}/install-sh
+%attr(755,root,root) %{_datadir}/icu/%{version}/mkinstalldirs
 %{_mandir}/man1/icu-config.1*
 
 %if %{with static_libs}
