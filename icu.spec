@@ -8,7 +8,7 @@ Summary:	International Components for Unicode
 Summary(pl.UTF-8):	Międzynarodowe komponenty dla unikodu
 Name:		icu67
 Version:	67.1
-Release:	2
+Release:	3
 License:	MIT-like
 Group:		Libraries
 Source0:	https://github.com/unicode-org/icu/releases/download/release-67-1/icu4c-%{ver}-src.tgz
