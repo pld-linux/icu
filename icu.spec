@@ -8,7 +8,7 @@ Summary:	International Components for Unicode
 Summary(pl.UTF-8):	Międzynarodowe komponenty dla unikodu
 Name:		icu67
 Version:	67.1
-Release:	3
+Release:	4
 License:	MIT-like
 Group:		Libraries
 Source0:	https://github.com/unicode-org/icu/releases/download/release-67-1/icu4c-%{ver}-src.tgz
@@ -49,6 +49,7 @@ konwerterami i danymi stref czasowych.
 Summary:	International Components for Unicode (libraries)
 Summary(pl.UTF-8):	Międzynarodowe Komponenty dla Unikodu (biblioteki)
 Group:		Libraries
+Provides:	libicu = %{version}
 Obsoletes:	libicu30
 
 %description -n libicu67
