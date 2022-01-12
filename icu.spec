@@ -7,12 +7,12 @@
 Summary:	International Components for Unicode
 Summary(pl.UTF-8):	Międzynarodowe komponenty dla unikodu
 Name:		icu
-Version:	69.1
+Version:	70.1
 Release:	1
 License:	MIT-like
 Group:		Libraries
-Source0:	https://github.com/unicode-org/icu/releases/download/release-69-1/icu4c-%{ver}-src.tgz
-# Source0-md5:	9403db682507369d0f60a25ea67014c4
+Source0:	https://github.com/unicode-org/icu/releases/download/release-70-1/icu4c-%{ver}-src.tgz
+# Source0-md5:	65287befec8116d79af23a58aa50c60d
 Patch0:		%{name}-cxx-pre11.patch
 Patch1:		icudata-stdlibs.patch
 URL:		http://site.icu-project.org/
@@ -148,6 +148,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/derb
 %attr(755,root,root) %{_bindir}/escapesrc
 %attr(755,root,root) %{_bindir}/gen*
+%attr(755,root,root) %{_bindir}/icuexportdata
 %attr(755,root,root) %{_bindir}/icuinfo
 %attr(755,root,root) %{_bindir}/icupkg
 %attr(755,root,root) %{_bindir}/makeconv
@@ -155,6 +156,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/uconv
 %{_mandir}/man1/derb.1*
 %{_mandir}/man1/gen*.1*
+%{_mandir}/man1/icuexportdata.1*
 %{_mandir}/man1/makeconv.1*
 %{_mandir}/man1/pkgdata.1*
 %{_mandir}/man1/uconv.1*
