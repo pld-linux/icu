@@ -7,12 +7,12 @@
 Summary:	International Components for Unicode
 Summary(pl.UTF-8):	Międzynarodowe komponenty dla unikodu
 Name:		icu
-Version:	70.1
+Version:	71.1
 Release:	1
 License:	MIT-like
 Group:		Libraries
-Source0:	https://github.com/unicode-org/icu/releases/download/release-70-1/icu4c-%{ver}-src.tgz
-# Source0-md5:	65287befec8116d79af23a58aa50c60d
+Source0:	https://github.com/unicode-org/icu/releases/download/release-71-1/icu4c-%{ver}-src.tgz
+# Source0-md5:	e06ffc96f59762bd3c929b217445aaec
 Patch0:		%{name}-cxx-pre11.patch
 Patch1:		icudata-stdlibs.patch
 URL:		http://site.icu-project.org/
