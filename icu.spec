@@ -17,7 +17,8 @@ Patch0:		%{name}-cxx-pre11.patch
 Patch1:		icudata-stdlibs.patch
 URL:		http://site.icu-project.org/
 BuildRequires:	autoconf >= 2.69
-BuildRequires:	libstdc++-devel
+BuildRequires:	autoconf-archive
+BuildRequires:	libstdc++-devel >= 6:4.8.1
 Requires:	libicu = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
