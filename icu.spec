@@ -8,12 +8,13 @@ Summary:	International Components for Unicode
 Summary(pl.UTF-8):	Międzynarodowe komponenty dla unikodu
 Name:		icu
 Version:	73.2
-Release:	1
+Release:	2
 License:	MIT-like
 Group:		Libraries
 Source0:	https://github.com/unicode-org/icu/releases/download/release-73-2/icu4c-%{ver}-src.tgz
 # Source0-md5:	b8a4b8cf77f2e2f6e1341eac0aab2fc4
 Patch0:		icudata-stdlibs.patch
+Patch1:		timezone.patch
 URL:		http://site.icu-project.org/
 BuildRequires:	autoconf >= 2.69
 BuildRequires:	autoconf-archive
@@ -98,6 +99,7 @@ biblioteki programistyczne ICU.
 %prep
 %setup -q -n %{name}
 %patch0 -p1
+%patch1 -p2
 
 %build
 cd source
