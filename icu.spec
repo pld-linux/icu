@@ -1,6 +1,6 @@
 #
 # Conditional build:
-%bcond_without	static_libs	# don't build static libraries
+%bcond_without	static_libs	# static libraries
 
 %define		ver	%(echo %{version} | tr . _)
 %define		basever	%(echo %{version} | cut -d. -f1)
@@ -50,7 +50,7 @@ konwerterami i danymi stref czasowych.
 Summary:	International Components for Unicode (libraries)
 Summary(pl.UTF-8):	Międzynarodowe Komponenty dla Unikodu (biblioteki)
 Group:		Libraries
-Obsoletes:	libicu30
+Obsoletes:	libicu30 < 3.2
 
 %description -n libicu
 ICU is a set of C and C++ libraries that provides robust and
