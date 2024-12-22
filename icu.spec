@@ -7,18 +7,18 @@
 Summary:	International Components for Unicode
 Summary(pl.UTF-8):	Międzynarodowe komponenty dla unikodu
 Name:		icu
-Version:	73.2
-Release:	2
+Version:	76.1
+Release:	1
 License:	MIT-like
 Group:		Libraries
-Source0:	https://github.com/unicode-org/icu/releases/download/release-73-2/icu4c-%{ver}-src.tgz
-# Source0-md5:	b8a4b8cf77f2e2f6e1341eac0aab2fc4
+Source0:	https://github.com/unicode-org/icu/releases/download/release-76-1/icu4c-%{ver}-src.tgz
+# Source0-md5:	857fdafff8127139cc175a3ec9b43bd6
 Patch0:		icudata-stdlibs.patch
 Patch1:		timezone.patch
 URL:		http://site.icu-project.org/
 BuildRequires:	autoconf >= 2.69
 BuildRequires:	autoconf-archive
-BuildRequires:	libstdc++-devel >= 6:4.8.1
+BuildRequires:	libstdc++-devel >= 6:7
 Requires:	libicu = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
