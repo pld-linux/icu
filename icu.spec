@@ -16,9 +16,11 @@ Source0:	https://github.com/unicode-org/icu/releases/download/release-76-1/icu4c
 Patch0:		icudata-stdlibs.patch
 Patch1:		timezone.patch
 URL:		http://site.icu-project.org/
-BuildRequires:	autoconf >= 2.69
+BuildRequires:	autoconf >= 2.72
 BuildRequires:	autoconf-archive
-BuildRequires:	libstdc++-devel >= 6:7
+BuildRequires:	libstdc++-devel >= 6:8
+BuildRequires:	python3
+BuildRequires:	python3-modules
 Requires:	libicu = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -69,6 +71,7 @@ Summary:	International Components for Unicode (development files)
 Summary(pl.UTF-8):	Międzynarodowe komponenty dla Unikodu (pliki dla programistów)
 Group:		Development/Libraries
 Requires:	libicu = %{version}-%{release}
+Requires:	libstdc++-devel >= 6:8
 
 %description -n libicu-devel
 ICU is a set of C and C++ libraries that provides robust and
