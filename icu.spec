@@ -15,7 +15,7 @@ Source0:	https://github.com/unicode-org/icu/releases/download/release-76-1/icu4c
 # Source0-md5:	857fdafff8127139cc175a3ec9b43bd6
 Patch0:		icudata-stdlibs.patch
 Patch1:		timezone.patch
-URL:		http://site.icu-project.org/
+URL:		https://icu.unicode.org/
 BuildRequires:	autoconf >= 2.72
 BuildRequires:	autoconf-archive
 BuildRequires:	libstdc++-devel >= 6:8
