@@ -21,7 +21,7 @@ BuildRequires:	autoconf-archive
 BuildRequires:	libstdc++-devel >= 6:8
 BuildRequires:	python3
 BuildRequires:	python3-modules
-Requires:	libicu = %{version}-%{release}
+Requires:	libicu%{?_isa} = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -70,8 +70,8 @@ czasie działania i obecnymi w pakietach "icu".
 Summary:	International Components for Unicode (development files)
 Summary(pl.UTF-8):	Międzynarodowe komponenty dla Unikodu (pliki dla programistów)
 Group:		Development/Libraries
-Requires:	libicu = %{version}-%{release}
-Requires:	libstdc++-devel >= 6:8
+Requires:	libicu%{?_isa} = %{version}-%{release}
+Requires:	libstdc++-devel%{?_isa} >= 6:8
 
 %description -n libicu-devel
 ICU is a set of C and C++ libraries that provides robust and
@@ -87,11 +87,11 @@ programistyczne ICU.
 Summary:	International Components for Unicode (static libraries)
 Summary(pl.UTF-8):	Międzynarodowe komponenty dla Unikodu (biblioteki statyczne)
 Group:		Development/Libraries
-Requires:	libicu-devel = %{version}-%{release}
+Requires:	libicu-devel%{?_isa} = %{version}-%{release}
 
 %description -n libicu-static
 ICU is a set of C and C++ libraries that provides robust and
-full-featured Unicode support. This package contains the static 
+full-featured Unicode support. This package contains the static
 libraries for ICU.
 
 %description -n libicu-static -l pl.UTF-8
