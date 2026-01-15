@@ -2,17 +2,16 @@
 # Conditional build:
 %bcond_without	static_libs	# static libraries
 
-%define		ver	%(echo %{version} | tr . _)
 %define		basever	%(echo %{version} | cut -d. -f1)
 Summary:	International Components for Unicode
 Summary(pl.UTF-8):	Międzynarodowe komponenty dla unikodu
 Name:		icu
-Version:	76.1
+Version:	78.2
 Release:	1
 License:	MIT-like
 Group:		Libraries
-Source0:	https://github.com/unicode-org/icu/releases/download/release-76-1/icu4c-%{ver}-src.tgz
-# Source0-md5:	857fdafff8127139cc175a3ec9b43bd6
+Source0:	https://github.com/unicode-org/icu/releases/download/release-%{version}/icu4c-%{version}-sources.tgz
+# Source0-md5:	2bf8db43ccdc837e402ac773f17c7cf8
 Patch0:		icudata-stdlibs.patch
 Patch1:		timezone.patch
 URL:		https://icu.unicode.org/
